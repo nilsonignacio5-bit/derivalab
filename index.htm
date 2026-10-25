@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DerivaLab - Cálculo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 p-4 flex items-center gap-3 sticky top-0 z-10">
+        <div class="bg-indigo-600 text-white font-bold p-2 rounded-xl text-lg">d/dx</div>
+        <div>
+            <h1 class="text-lg font-bold">DerivaLab</h1>
+            <p class="text-xs text-slate-400">Cálculo Universitario</p>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="p-4 max-w-md mx-auto w-full space-y-4 mb-20">
+        
+        <!-- Tarjeta de Bienvenida -->
+        <div class="bg-gradient-to-br from-indigo-600 to-violet-600 p-5 rounded-2xl shadow-lg">
+            <h2 class="text-xl font-bold text-white">¡Hola, Estudiante!</h2>
+            <p class="text-sm text-indigo-100 mt-1">Listo para dominar el cálculo paso a paso.</p>
+        </div>
+
+        <!-- Sección de Temario / Módulos -->
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-md space-y-3">
+            <h3 class="text-lg font-bold text-indigo-400">📚 Temario Rápido</h3>
+            <div class="p-3 bg-slate-800 rounded-xl">
+                <p class="font-bold text-base">1. Regla de la Potencia</p>
+                <p class="text-xs text-slate-400 mt-1">d/dx (xⁿ) = n · xⁿ⁻¹</p>
+            </div>
+            <div class="p-3 bg-slate-800 rounded-xl">
+                <p class="font-bold text-base">2. Trigonométricas</p>
+                <p class="text-xs text-slate-400 mt-1">Derivadas de sin, cos, sec, csc, cot.</p>
+            </div>
+            <div class="p-3 bg-slate-800 rounded-xl">
+                <p class="font-bold text-base">3. Integrales Inmediatas</p>
+                <p class="text-xs text-slate-400 mt-1">∫ xⁿ dx = xⁿ⁺¹ / (n+1) + C</p>
+            </div>
+        </div>
+
+        <!-- Calculadora Visual de Ejemplo -->
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-md space-y-3">
+            <h3 class="text-lg font-bold text-indigo-400">🧮 Referencia de Derivada</h3>
+            <p class="text-sm text-slate-300">Función: <code class="bg-slate-800 px-2 py-1 rounded text-indigo-300">f(x) = sec²(x) + arcsin(x)</code></p>
+            <div class="p-4 bg-slate-800 rounded-xl text-center text-cyan-300 font-mono text-sm">
+                f'(x) = 2sec²(x)tan(x) + 1 / √(1 - x²)
+            </div>
+        </div>
+
+        <!-- Quiz Rápido -->
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-md space-y-3">
+            <h3 class="text-lg font-bold text-indigo-400">🧠 Quiz de Evaluación</h3>
+            <p class="text-sm">¿Cuál es la derivada de <span class="text-indigo-300 font-mono">f(x) = ln(x)</span>?</p>
+            <div class="space-y-2 pt-2">
+                <button onclick="alert('¡Incorrecto!')" class="w-full py-3 bg-slate-800 hover:bg-slate-700 rounded-xl font-medium text-left px-4 text-sm">A) x</button>
+                <button onclick="alert('¡Correcto! 🎉')" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-left px-4 text-sm">B) 1/x (Correcto)</button>
+                <button onclick="alert('¡Incorrecto!')" class="w-full py-3 bg-slate-800 hover:bg-slate-700 rounded-xl font-medium text-left px-4 text-sm">C) eˣ</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Barra de Navegación Inferior (Estilo App Móvil) -->
+    <nav class="bg-slate-900 border-t border-slate-800 fixed bottom-0 left-0 right-0 p-3 flex justify-around text-xs font-medium text-slate-400">
+        <button class="flex flex-col items-center text-indigo-400">
+            <span class="text-lg">🏠</span>
+            <span>Inicio</span>
+        </button>
+        <button class="flex flex-col items-center hover:text-indigo-400">
+            <span class="text-lg">📚</span>
+            <span>Cursos</span>
+        </button>
+        <button class="flex flex-col items-center hover:text-indigo-400">
+            <span class="text-lg">🧮</span>
+            <span>Calc</span>
+        </button>
+        <button class="flex flex-col items-center hover:text-indigo-400">
+            <span class="text-lg">🧠</span>
+            <span>Quiz</span>
+        </button>
+    </nav>
+
+</body>
+</html>
