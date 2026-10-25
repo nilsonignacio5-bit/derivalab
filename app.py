@@ -10,31 +10,36 @@ st.markdown("""
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
+    /* Ocultar barra superior de Streamlit y forzar altura completa */
+    [data-testid="stHeader"] {display: none;}
+    
     .stApp {
-        background-color: #f1f5f9 !important;
-        color: #0f172a !important;
+        background-color: #0f172a !important;
+        color: #f8fafc !important;
+        min-height: 100vh;
     }
     
     .block-container {
-        padding: 10px !important;
+        padding: 8px !important;
         max-width: 100% !important;
+        margin: 0 !important;
     }
     
     p, span, label, div, li {
         font-size: 16px !important;
+        color: #e2e8f0;
     }
     
-    h2 { font-size: 20px !important; }
-    h3 { font-size: 18px !important; }
+    h2, h3 { color: #ffffff !important; }
     
     .card-box {
-        background: white;
+        background: #1e293b;
         padding: 14px;
         border-radius: 12px;
-        border: 1px solid #cbd5e1;
+        border: 1px solid #334155;
         margin-bottom: 10px;
         width: 100%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     
     .hero-banner {
@@ -50,7 +55,7 @@ st.markdown("""
         color: white !important;
         border-radius: 10px !important;
         width: 100% !important;
-        height: 45px !important;
+        height: 48px !important;
         font-size: 16px !important;
         font-weight: bold !important;
         border: none !important;
@@ -82,8 +87,8 @@ with tab_inicio:
             <p style="margin:6px 0 0 0; font-size: 14px;">Listo para dominar el cálculo paso a paso.</p>
         </div>
         <div class="card-box">
-            <h3 style="margin-top:0; color:#1e293b;">⚡ Acceso Rápido</h3>
-            <p style="color:#475569; margin-bottom:0; font-size: 14px;">Usa las pestañas superiores para navegar por los contenidos.</p>
+            <h3 style="margin-top:0;">⚡ Acceso Rápido</h3>
+            <p style="margin-bottom:0; font-size: 14px;">Usa las pestañas superiores para navegar por los contenidos.</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -99,8 +104,8 @@ with tab_cursos:
         for tit, desc, cid in cursos:
             st.markdown(f"""
                 <div class="card-box" style="margin-bottom: 8px;">
-                    <strong style="font-size: 16px; color: #1e293b;">{tit}</strong>
-                    <p style="margin: 2px 0 0 0; font-size: 13px; color: #64748b;">{desc}</p>
+                    <strong style="font-size: 16px; color: #ffffff;">{tit}</strong>
+                    <p style="margin: 2px 0 0 0; font-size: 13px; color: #94a3b8;">{desc}</p>
                 </div>
             """, unsafe_allow_html=True)
             if st.button(f"Abrir Módulo {cid}", key=f"b_{cid}"):
@@ -150,7 +155,7 @@ with tab_calc:
                     'arcsin': sp.asin, 'arccos': sp.acos, 'arctan': sp.atan, 'sqrt': sp.sqrt
                 }
                 expr = parse_expr(clean_input, local_dict=local_dict, transformations=transformations, evaluate=False)
-                st.markdown('<div class="card-box" style="background: #f1f5f9; margin-top: 8px;">', unsafe_allow_html=True)
+                st.markdown('<div class="card-box" style="background: #334155; margin-top: 8px;">', unsafe_allow_html=True)
                 if "Derivada" in tipo_op:
                     res = sp.diff(expr, x)
                     st.latex(f"\\frac{{d}}{{dx}}({sp.latex(expr)}) = {sp.latex(res)}")
