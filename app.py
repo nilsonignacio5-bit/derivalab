@@ -4,35 +4,48 @@ from sympy.parsing.sympy_parser import parse_expr, standard_transformations, imp
 
 st.set_page_config(page_title="DerivaLab", page_icon="⚡", layout="centered")
 
+# CSS agresivo para eliminar espacios en blanco y forzar diseño móvil real a pantalla completa
 st.markdown("""
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
+    /* Eliminar los espacios y márgenes gigantes por defecto de Streamlit en móviles */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 2rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        max-width: 100% !important;
+    }
+    
     .stApp {
         background-color: #f8fafc;
         color: #1e293b;
     }
     
+    /* Tarjetas de contenido adaptadas al ancho completo */
     .card-box {
         background: white;
-        padding: 20px;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        padding: 16px;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         border: 1px solid #e2e8f0;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
+        width: 100%;
     }
     
     .hero-banner {
         background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
         color: white;
-        padding: 24px;
-        border-radius: 16px;
-        margin-bottom: 16px;
-        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+        padding: 20px;
+        border-radius: 14px;
+        margin-bottom: 14px;
+        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.25);
     }
     
+    /* Botones limpios y grandes para toque en celular */
     .stButton>button {
         background-color: #4f46e5;
         color: white;
@@ -47,6 +60,20 @@ st.markdown("""
         background-color: #4338ca;
         color: white;
     }
+    
+    /* Pestañas limpias */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 4px;
+        background-color: #e2e8f0;
+        padding: 4px;
+        border-radius: 10px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        height: 38px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -55,13 +82,13 @@ if 'curso_seleccionado' not in st.session_state:
 
 transformations = standard_transformations + (implicit_multiplication_application,)
 
-# Cabecera optimizada para móvil
+# Cabecera principal compacta
 st.markdown("""
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-        <div style="background: #4f46e5; color: white; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">d/dx</div>
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+        <div style="background: #4f46e5; color: white; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold;">d/dx</div>
         <div>
-            <h2 style="margin:0; color: #0f172a; font-size: 20px;">DerivaLab</h2>
-            <span style="color: #64748b; font-size: 12px;">Cálculo Universitario</span>
+            <h2 style="margin:0; color: #0f172a; font-size: 18px;">DerivaLab</h2>
+            <span style="color: #64748b; font-size: 11px;">Cálculo Universitario</span>
         </div>
     </div>
 """, unsafe_allow_html=True)
@@ -71,36 +98,36 @@ tab_inicio, tab_cursos, tab_calc, tab_quiz = st.tabs(["🏠 Inicio", "📚 Curso
 with tab_inicio:
     st.markdown("""
         <div class="hero-banner">
-            <h3 style="margin:0; color: white; font-size: 18px;">¡Hola, Estudiante!</h3>
-            <p style="margin:6px 0 12px 0; font-size: 13px; opacity: 0.9;">Hoy seguimos dominando el cálculo universitario.</p>
-            <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 10px;">
-                <span style="font-size: 11px;">Racha de estudio</span><br>
-                <strong style="font-size: 15px;">🔥 7 días consecutivos - ¡Sigue así!</strong>
+            <h3 style="margin:0; color: white; font-size: 16px;">¡Hola, Estudiante!</h3>
+            <p style="margin:4px 0 10px 0; font-size: 12px; opacity: 0.9;">Hoy seguimos dominando el cálculo.</p>
+            <div style="background: rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 8px; display: inline-block;">
+                <span style="font-size: 10px;">Racha actual</span><br>
+                <strong style="font-size: 13px;">🔥 7 días consecutivos</strong>
             </div>
         </div>
     """, unsafe_allow_html=True)
     
     st.markdown("""
         <div class="card-box">
-            <h4 style="margin-top:0; color:#1e293b; font-size: 15px;">⚡ Acceso Directo</h4>
-            <p style="color:#64748b; font-size:12px; margin-bottom:0;">Usa las pestañas superiores para navegar entre los módulos, resolver derivadas en la calculadora o practicar en el quiz.</p>
+            <h4 style="margin-top:0; color:#1e293b; font-size: 14px;">⚡ Acceso Directo</h4>
+            <p style="color:#64748b; font-size:12px; margin-bottom:0;">Usa las pestañas superiores para ver el temario, usar la calculadora o practicar.</p>
         </div>
     """, unsafe_allow_html=True)
 
 with tab_cursos:
     if st.session_state.curso_seleccionado is None:
-        st.markdown("### 📚 Temario de Cálculo")
+        st.markdown("### Temario de Cálculo")
         cursos_data = [
-            ("1. Regla de la Potencia y Polinomios", "f(x) = xⁿ · Derivadas básicas", 1),
-            ("2. Derivadas Trigonométricas", "sin, cos, sec, csc, cot", 2),
-            ("3. Trigonométricas Inversas", "arcsin, arccos, arctan", 3),
+            ("1. Regla de la Potencia", "f(x) = xⁿ · Derivadas básicas", 1),
+            ("2. Trigonométricas", "sin, cos, sec, csc, cot", 2),
+            ("3. Trig. Inversas", "arcsin, arccos, arctan", 3),
             ("4. Integrales Inmediatas", "∫ xⁿ dx, e^x, ln(x)", 4)
         ]
         for titulo, desc, cid in cursos_data:
             st.markdown(f"""
-                <div class="card-box" style="padding: 14px; margin-bottom: 10px;">
-                    <strong style="font-size: 14px; color: #1e293b;">{titulo}</strong>
-                    <p style="margin: 2px 0 8px 0; font-size: 12px; color: #64748b;">{desc}</p>
+                <div class="card-box" style="padding: 12px; margin-bottom: 8px;">
+                    <strong style="font-size: 13px; color: #1e293b;">{titulo}</strong>
+                    <p style="margin: 2px 0 6px 0; font-size: 11px; color: #64748b;">{desc}</p>
                 </div>
             """, unsafe_allow_html=True)
             if st.button(f"📖 Ver Módulo {cid}", key=f"btn_c_{cid}"):
@@ -113,27 +140,27 @@ with tab_cursos:
         cid = st.session_state.curso_seleccionado
         if cid == 1:
             st.markdown("### Módulo 1: Regla de la Potencia")
-            st.markdown('<div class="card-box"><p style="font-size:13px; color:#475569;">Fórmula base para polinomios:</p>', unsafe_allow_html=True)
+            st.markdown('<div class="card-box"><p style="font-size:12px; color:#475569;">Fórmula base:</p>', unsafe_allow_html=True)
             st.latex(r"\frac{d}{dx}(x^n) = n \cdot x^{n-1}")
-            st.markdown("<p style='font-size:13px; color:#475569;'>Ejemplo: $f(x) = 3x^4 \implies f'(x) = 12x^3$</p></div>", unsafe_allow_html=True)
+            st.markdown("<p style='font-size:12px; color:#475569;'>Ejemplo: $f(x) = 3x^4 \implies f'(x) = 12x^3$</p></div>", unsafe_allow_html=True)
         elif cid == 2:
             st.markdown("### Módulo 2: Trigonométricas")
-            st.markdown('<div class="card-box"><p style="font-size:13px; color:#475569;">Derivadas circulares y recíprocas:</p>', unsafe_allow_html=True)
+            st.markdown('<div class="card-box"><p style="font-size:12px; color:#475569;">Derivadas circulares:</p>', unsafe_allow_html=True)
             st.latex(r"\frac{d}{dx}(\sec(x)) = \sec(x)\tan(x)")
             st.markdown("</div>", unsafe_allow_html=True)
         elif cid == 3:
             st.markdown("### Módulo 3: Trig. Inversas")
-            st.markdown('<div class="card-box"><p style="font-size:13px; color:#475569;">Funciones inversas:</p>', unsafe_allow_html=True)
+            st.markdown('<div class="card-box"><p style="font-size:12px; color:#475569;">Funciones inversas:</p>', unsafe_allow_html=True)
             st.latex(r"\frac{d}{dx}(\arcsin(x)) = \frac{1}{\sqrt{1 - x^2}}")
             st.markdown("</div>", unsafe_allow_html=True)
         elif cid == 4:
             st.markdown("### Módulo 4: Integrales")
-            st.markdown('<div class="card-box"><p style="font-size:13px; color:#475569;">Antiderivadas:</p>', unsafe_allow_html=True)
+            st.markdown('<div class="card-box"><p style="font-size:12px; color:#475569;">Antiderivadas:</p>', unsafe_allow_html=True)
             st.latex(r"\int x^n \, dx = \frac{x^{n+1}}{n+1} + C")
             st.markdown("</div>", unsafe_allow_html=True)
 
 with tab_calc:
-    st.markdown('<div class="card-box"><h3 style="margin-top:0; font-size:16px;">🧮 Calculadora</h3></div>', unsafe_allow_html=True)
+    st.markdown('<div class="card-box"><h3 style="margin-top:0; font-size:15px;">🧮 Calculadora</h3></div>', unsafe_allow_html=True)
     tipo_op = st.radio("Operación:", ["Derivada d/dx", "Integral ∫ dx"], horizontal=True)
     funcion_input = st.text_input("Ingresa f(x):", value="sec(x)**2 + arcsin(x)")
     
@@ -162,7 +189,7 @@ with tab_calc:
                 st.error(f"Error: {e}")
 
 with tab_quiz:
-    st.markdown('<div class="card-box"><h3 style="margin-top:0; font-size:16px;">🧠 Quiz</h3><p style="font-size:12px;">Derivada de $f(x) = \\ln(x)$?</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="card-box"><h3 style="margin-top:0; font-size:15px;">🧠 Quiz</h3><p style="font-size:12px;">Derivada de $f(x) = \\ln(x)$?</p></div>', unsafe_allow_html=True)
     opcion_quiz = st.radio("Elige:", ["A) x", "B) 1/x", "C) e^x", "D) -1/x²"], key="q_m")
     if st.button("Comprobar"):
         if opcion_quiz.startswith("B)"):
